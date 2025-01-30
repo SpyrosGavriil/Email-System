@@ -7,11 +7,10 @@ import java.time.LocalDateTime;
 import java.util.List;
 
 @Entity
+@Data
 @Table(name = "emails")
-@Getter
-@Setter
-@NoArgsConstructor
 @AllArgsConstructor
+@RequiredArgsConstructor
 @Builder
 public class Email {
 
@@ -34,15 +33,19 @@ public class Email {
     private String body;
 
     @Column(nullable = false)
+    @Builder.Default
     private boolean isRead = false;
 
     @Column(nullable = false)
+    @Builder.Default
     private boolean isDeleted = false;
 
     @Column(nullable = false)
+    @Builder.Default
     private boolean isArchived = false;
 
     @Column(nullable = false)
+    @Builder.Default
     private LocalDateTime createdAt = LocalDateTime.now();
 
     // Relationship with attachments

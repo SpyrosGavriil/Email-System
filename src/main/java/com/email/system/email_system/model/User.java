@@ -7,11 +7,10 @@ import java.time.LocalDateTime;
 import java.util.List;
 
 @Entity
+@Data
 @Table(name = "users")
-@Getter
-@Setter
-@NoArgsConstructor
 @AllArgsConstructor
+@RequiredArgsConstructor
 @Builder
 public class User {
 
@@ -26,6 +25,7 @@ public class User {
     private String password; // Store hashed password
 
     @Column(nullable = false)
+    @Builder.Default
     private LocalDateTime createdAt = LocalDateTime.now();
 
     // Relationship with emails (sent emails)

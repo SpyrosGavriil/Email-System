@@ -4,11 +4,10 @@ import jakarta.persistence.*;
 import lombok.*;
 
 @Entity
+@Data
 @Table(name = "attachments")
-@Getter
-@Setter
-@NoArgsConstructor
 @AllArgsConstructor
+@RequiredArgsConstructor
 @Builder
 public class Attachment {
 
