@@ -25,6 +25,12 @@ public class User {
     private String password; // Store hashed password
 
     @Column(nullable = false)
+    private String firstName;
+
+    @Column(nullable = false)
+    private String lastName;
+
+    @Column(nullable = false)
     @Builder.Default
     private LocalDateTime createdAt = LocalDateTime.now();
 

@@ -1,5 +1,6 @@
 package com.email.system.email_system.controller;
 
+import com.email.system.email_system.dto.SendEmailRequest;
 import com.email.system.email_system.model.Email;
 import com.email.system.email_system.service.EmailService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -16,11 +17,13 @@ public class EmailController {
 
     // Send an email
     @PostMapping("/send")
-    public Email sendEmail(@RequestParam Long senderId,
-            @RequestParam Long recipientId,
-            @RequestParam String subject,
-            @RequestParam String body) {
-        return emailService.sendEmail(senderId, recipientId, subject, body);
+    public Email sendEmail(@RequestBody SendEmailRequest request) {
+        return emailService.sendEmail(
+                request.getSenderId(),
+                request.getRecipientId(),
+                request.getSubject(),
+                request.getBody()
+        );
     }
 
     // Get inbox for a user

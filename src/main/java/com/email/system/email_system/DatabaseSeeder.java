@@ -22,6 +22,7 @@ public class DatabaseSeeder {
         private final UserRepository userRepository;
         private final EmailRepository emailRepository;
         private final AttachmentRepository attachmentRepository;
+        private final BCryptPasswordEncoder passwordEncoder;
 
         @PostConstruct
         public void seedDatabase() {
@@ -32,13 +33,13 @@ public class DatabaseSeeder {
                 // Create Users
                 User user1 = User.builder()
                                 .email("user1@example.com")
-                                .password("password123")
+                                .password(passwordEncoder.encode("password123"))
                                 .createdAt(LocalDateTime.now())
                                 .build();
 
                 User user2 = User.builder()
                                 .email("user2@example.com")
-                                .password("password123")
+                                .password(passwordEncoder.encode("password123"))
                                 .createdAt(LocalDateTime.now())
                                 .build();
 
