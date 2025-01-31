@@ -2,9 +2,13 @@ package com.email.system.email_system.model;
 
 import jakarta.persistence.*;
 import lombok.*;
+import org.springframework.security.core.userdetails.UserDetails;
 
 import java.time.LocalDateTime;
 import java.util.List;
+import java.util.Collection;
+import org.springframework.security.core.GrantedAuthority;
+import org.springframework.security.core.authority.SimpleGrantedAuthority;
 
 @Entity
 @Data
@@ -12,7 +16,7 @@ import java.util.List;
 @AllArgsConstructor
 @RequiredArgsConstructor
 @Builder
-public class User {
+public class User implements UserDetails {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -41,4 +45,14 @@ public class User {
     // Relationship with emails (received emails)
     @OneToMany(mappedBy = "recipient", cascade = CascadeType.ALL, orphanRemoval = true)
     private List<Email> receivedEmails;
+
+    @Override
+    public String getUsername() {
+        return email;
+    }
+
+    @Override
+    public Collection<? extends GrantedAuthority> getAuthorities() {
+        return List.of(new SimpleGrantedAuthority("ROLE_USER"));
+    }
 }

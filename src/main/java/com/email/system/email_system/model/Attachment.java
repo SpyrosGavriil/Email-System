@@ -23,6 +23,7 @@ public class Attachment {
     private String fileName;
 
     @Lob
+    @Basic(fetch = FetchType.LAZY)
     @Column(nullable = false)
     private byte[] fileData;
 }
