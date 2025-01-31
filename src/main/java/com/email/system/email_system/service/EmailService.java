@@ -1,5 +1,7 @@
 package com.email.system.email_system.service;
 
+import com.email.system.email_system.dto.DTOMapper;
+import com.email.system.email_system.dto.EmailDTO;
 import com.email.system.email_system.model.Email;
 import com.email.system.email_system.model.User;
 import com.email.system.email_system.repository.EmailRepository;
@@ -9,6 +11,7 @@ import org.springframework.stereotype.Service;
 
 import java.util.List;
 import java.util.Optional;
+import java.util.stream.Collectors;
 
 @Service
 public class EmailService {
@@ -41,10 +44,12 @@ public class EmailService {
         return emailRepository.save(email);
     }
 
-    // Get all emails for a recipient
-    public List<Email> getInbox(Long recipientId) {
-        return emailRepository.findByRecipientIdAndIsDeletedFalse(recipientId);
-    }
+    public List<EmailDTO> getInbox(Long recipientId) {
+    return emailRepository.findByRecipientIdAndIsDeletedFalse(recipientId)
+            .stream()
+            .map(DTOMapper::toEmailDTO)
+            .collect(Collectors.toList());
+}
 
     // Mark an email as read
     public void markAsRead(Long emailId) {

@@ -1,5 +1,6 @@
 package com.email.system.email_system.service;
 
+import com.email.system.email_system.dto.AttachmentDTO;
 import com.email.system.email_system.model.Attachment;
 import com.email.system.email_system.model.Email;
 import com.email.system.email_system.repository.AttachmentRepository;
@@ -36,7 +37,11 @@ public class AttachmentService {
     }
 
     // Get attachments for an email
-    public List<Attachment> getAttachments(Long emailId) {
-        return attachmentRepository.findByEmailId(emailId);
+    public List<AttachmentDTO> getAttachments(Long emailId) {
+        List<Attachment> attachments = attachmentRepository.findByEmailId(emailId);
+        return attachments.stream()
+                .map(attachment -> new AttachmentDTO(attachment.getId(), attachment.getFileName(),
+                        attachment.getFileData()))
+                .toList();
     }
 }

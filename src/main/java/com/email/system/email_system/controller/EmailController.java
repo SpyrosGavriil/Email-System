@@ -1,5 +1,6 @@
 package com.email.system.email_system.controller;
 
+import com.email.system.email_system.dto.EmailDTO;
 import com.email.system.email_system.dto.SendEmailRequest;
 import com.email.system.email_system.model.Email;
 import com.email.system.email_system.service.EmailService;
@@ -22,13 +23,12 @@ public class EmailController {
                 request.getSenderId(),
                 request.getRecipientId(),
                 request.getSubject(),
-                request.getBody()
-        );
+                request.getBody());
     }
 
     // Get inbox for a user
     @GetMapping("/inbox/{userId}")
-    public List<Email> getInbox(@PathVariable Long userId) {
+    public List<EmailDTO> getInbox(@PathVariable Long userId) {
         return emailService.getInbox(userId);
     }
 

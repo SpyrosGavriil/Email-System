@@ -1,5 +1,6 @@
 package com.email.system.email_system.controller;
 
+import com.email.system.email_system.dto.AttachmentDTO;
 import com.email.system.email_system.model.Attachment;
 import com.email.system.email_system.service.AttachmentService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -24,7 +25,7 @@ public class AttachmentController {
 
     // Get attachments for an email
     @GetMapping("/{emailId}")
-    public List<Attachment> getAttachments(@PathVariable Long emailId) {
+    public List<AttachmentDTO> getAttachments(@PathVariable Long emailId) {
         return attachmentService.getAttachments(emailId);
     }
 }
