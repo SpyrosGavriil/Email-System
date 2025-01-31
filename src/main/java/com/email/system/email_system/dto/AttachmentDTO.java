@@ -10,4 +10,5 @@ import lombok.*;
 public class AttachmentDTO {
     private Long id;
     private String fileName;
+    private byte[] fileData;
 }
