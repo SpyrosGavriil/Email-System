@@ -32,14 +32,18 @@ public class DatabaseSeeder {
 
                 // Create Users
                 User user1 = User.builder()
-                                .email("user1@example.com")
+                                .email("jdoe@example.com")
                                 .password(passwordEncoder.encode("password123"))
+                                .firstName("John")
+                                .lastName("Doe")
                                 .createdAt(LocalDateTime.now())
                                 .build();
 
                 User user2 = User.builder()
-                                .email("user2@example.com")
+                                .email("asmith@example.com")
                                 .password(passwordEncoder.encode("password123"))
+                                .firstName("Alice")
+                                .lastName("Smith")
                                 .createdAt(LocalDateTime.now())
                                 .build();
 
